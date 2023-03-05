@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const Command = require('commander').Command;
+const program = new Command();
+
+// TODO : create storage.json if not exists
+require('./helpers').header();
+require('./helpers/metadata')(program);
+require('./commands/set')(program);
+require('./commands/mode')(program);
+require('./commands/join')(program);
+
+program.parse();
