@@ -13,8 +13,11 @@ module.exports.OFF = NONE;
 
 const pair = { AUTO, MANUAL, NONE, OFF: NONE };
 
-function mode(value) {
-	let $mode = pair[String(value).toUpperCase()];
+function mode(value, uri) {
+	let $mode = pair[String(value || NONE).toUpperCase()];
+
+	if (uri)
+		shell(`gsettings set org.gnome.system.proxy autoconfig-url \"${uri}\"`);
 	shell(`gsettings set org.gnome.system.proxy mode \"${$mode}\"`);
 }
 
@@ -22,7 +25,7 @@ module.exports.switchOff = function switchOff() {
 	mode(NONE);
 };
 
-module.exports.switchAuto = function switchAuto() {
+module.exports.switchAuto = function switchAuto(uri) {
 	mode(AUTO);
 };
 

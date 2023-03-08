@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
+const shell = require('shelljs');
+const Ping = require('ping-wrapper');
 const Command = require('commander').Command;
 const program = new Command();
 
 // TODO : create storage.json if not exists
 require('./helpers').header();
 require('./helpers/metadata')(program);
-require('./commands/set')(program);
-require('./commands/mode')(program);
-require('./commands/join')(program);
+require('./commands/ping')(program);
+require('./commands/configs')(program);
 
 program.parse();
