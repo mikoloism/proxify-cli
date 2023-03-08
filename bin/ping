@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const Ping = require('../core/ping');
+
+console.log(process.argv[2], process.argv[3]);
+const ping = new Ping(
+	{ timeoutInSec: 5, proxy: process.argv[2], verbose: true },
+	process.argv[3],
+);
+
+ping.on('output', (data) => {
+	console.log(data);
+});
